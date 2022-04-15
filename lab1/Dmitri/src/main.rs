@@ -17,8 +17,8 @@ fn main() {
     println!("Введите размеры второй матрицы\t");
     let (m2_rows, m2_colls) = enter_size();
 
-    let mut matrix1 = vec![vec![0i32; m1_colls]; m1_rows];
-    let mut matrix2 = vec![vec![0i32; m2_colls]; m2_rows];
+    let mut matrix1 = matrix(m1_rows, m1_colls);
+    let mut matrix2 = matrix(m2_rows, m2_colls);
     ///////////////////////////////////////////////////////////////////////////////
     ////////////////Выбор способа заполнения и заполнение матриц///////////////////
     ///////////////////////////////////////////////////////////////////////////////
@@ -67,8 +67,8 @@ fn main() {
     while aug_size < m1_rows || aug_size < m2_rows || aug_size < m1_colls || aug_size < m2_colls {
         aug_size *= 2;
     }
-    let mut aug_matrix1 = vec![vec![0i32; aug_size]; aug_size];
-    let mut aug_matrix2 = vec![vec![0i32; aug_size]; aug_size];
+    let mut aug_matrix1 = matrix(aug_size, aug_size);
+    let mut aug_matrix2 = matrix(aug_size, aug_size);
 
     part_matrix(&matrix1, &mut aug_matrix1);
     part_matrix(&matrix2, &mut aug_matrix2);
@@ -91,13 +91,13 @@ fn main() {
 	////////////////////////Создание промежуточных матриц//////////////////////////
 	///////////////////////////////////////////////////////////////////////////////
     
-    let mut interm1 = vec![vec![0i32; aug_size]; aug_size];
-    let mut interm2 = vec![vec![0i32; aug_size]; aug_size];
-    let mut interm3 = vec![vec![0i32; aug_size]; aug_size];
-    let mut interm4 = vec![vec![0i32; aug_size]; aug_size];
-    let mut interm5 = vec![vec![0i32; aug_size]; aug_size];
-    let mut interm6 = vec![vec![0i32; aug_size]; aug_size];
-    let mut interm7 = vec![vec![0i32; aug_size]; aug_size];
+    let mut interm1 = matrix(aug_size, aug_size);
+    let mut interm2 = matrix(aug_size, aug_size);
+    let mut interm3 = matrix(aug_size, aug_size);
+    let mut interm4 = matrix(aug_size, aug_size);
+    let mut interm5 = matrix(aug_size, aug_size);
+    let mut interm6 = matrix(aug_size, aug_size);
+    let mut interm7 = matrix(aug_size, aug_size);
 
     ///////////////////////////////////////////////////////////////////////////////
 	////////////////////Вычисление значений промежуточных матриц///////////////////
@@ -120,10 +120,10 @@ fn main() {
 	///////////////////////Создание вспомогательных матриц/////////////////////////
 	///////////////////////////////////////////////////////////////////////////////
     
-    let mut helper1 = vec![vec![0i32; aug_size]; aug_size];
-    let mut helper2 = vec![vec![0i32; aug_size]; aug_size];
-    let mut helper3 = vec![vec![0i32; aug_size]; aug_size];
-    let mut helper4 = vec![vec![0i32; aug_size]; aug_size];
+    let mut helper1 = matrix(aug_size, aug_size);
+    let mut helper2 = matrix(aug_size, aug_size);
+    let mut helper3 = matrix(aug_size, aug_size);
+    let mut helper4 = matrix(aug_size, aug_size);
 
     ///////////////////////////////////////////////////////////////////////////////
 	////////////Подсчет значений вспомогательных матриц из промежуточных///////////
@@ -142,7 +142,7 @@ fn main() {
 	///////////////////Создание результирующей матрицы/////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////
 
-    let mut aug_res_mtrx = vec![vec![0i32; aug_size]; aug_size];
+    let mut aug_res_mtrx = matrix(aug_size, aug_size);
 
     ///////////////////////////////////////////////////////////////////////////////
 	///////Занесение информации из вспомогательных матриц в результирующую/////////
@@ -186,7 +186,7 @@ fn main() {
         }
     }
     
-    let mut res_mtrx = vec![vec![0i32; col]; row];
+    let mut res_mtrx = matrix(row, col);
     
     part_matrix(&aug_res_mtrx, &mut res_mtrx);
     

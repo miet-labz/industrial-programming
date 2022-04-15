@@ -109,3 +109,7 @@ pub fn matrix_angs(matrix: &Vec<Vec<i32>>) -> Vec<Vec<Vec<i32>>>{
     }
     matrix_angs
 }
+
+pub fn matrix(size1:usize, size2:usize) -> Vec<Vec<i32>>{
+    vec![vec![0i32; size2]; size1]
+}
